@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StorePicker from './StorePicker';
 import Header from './Header';
 import Inventory from './Inventory';
+import Order from './Order';
 
 class App extends Component {
     render() {
@@ -11,7 +12,7 @@ class App extends Component {
                     <Header />
                 </div>
                 <Inventory />
-                {/*  <Order /> */}
+                <Order />
             </div>
         );
     }
