@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import StorePicker from './StorePicker';
 import Header from './Header';
 import Inventory from './Inventory';
 import Order from './Order';
