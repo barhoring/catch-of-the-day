@@ -4,8 +4,11 @@ import { formatPrice } from '../helpers.js';
 class Order extends Component {
     renderOrder = (key) => {
         const fish = this.props.fishes[key];
+        // make sure thr fish is loaded before we continue
+        if(!fish)
+            return null;
         const count =this.props.order[key];
-        const isAvailable = fish.status === 'available';
+        const isAvailable = fish && fish.status === 'available';
         if(!isAvailable) {
             return <li key={key}> Sorry {fish ? fish.name: 'fish'} is not available</li>
         }
@@ -34,7 +37,6 @@ class Order extends Component {
     render() {
         const orderIds = Object.keys(this.props.order);
         const total = this.calcTotal(orderIds);
-        const { fishes } = this.props;
         return (
             <div className="order-wrap">
                 <h2>Order</h2>

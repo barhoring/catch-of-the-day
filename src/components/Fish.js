@@ -9,7 +9,7 @@ class Fish extends React.Component {
             <li className="menu-fish">
                 <img src={image} alt={name} />
                 <h3 className="fish-name">
-                    {name}
+                    {this.props.details.name}
                     <span className="price">{formatPrice(price)}</span>
                 </h3>
                 <p>{desc}</p>
