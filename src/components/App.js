@@ -41,6 +41,15 @@ class App extends Component {
         );
     }
 
+    updateFish = (key, fish) => {
+        console.log(fish);
+        this.setState(prevState => {
+            const fishes = { ...prevState.fishes, [key]: fish }
+            console.log(fishes);
+            return { fishes };
+        });
+    };
+
     addToOrder = key => {
         // 1. take a copy of state
         const order = { ...this.state.order };
@@ -86,6 +95,8 @@ class App extends Component {
                 <Inventory
                     addFish={this.addFish}
                     loadSampleFishes={this.loadSampleFishes}
+                    updateFish={this.updateFish}
+                    fishes={this.state.fishes}
                  />
             </div>
         );
