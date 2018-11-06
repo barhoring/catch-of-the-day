@@ -17,14 +17,12 @@ class App extends Component {
         if(localStorageRef) {
             this.setState({ order: JSON.parse(localStorageRef) })
         }
-        console.log(localStorageRef);
         this.ref = base.syncState(`${params.storeId}/fishes`, {
             context: this,
             state: 'fishes'
         });
     }
     componentDidUpdate() {
-        console.log(this.state.order);
         const storeId = this.props.match.params.storeId;
         localStorage.setItem(storeId, JSON.stringify(this.state.order));
     }
@@ -41,11 +39,15 @@ class App extends Component {
         );
     }
 
+    deleteFish = key => {
+        let fishes = { ...this.state.fishes};
+        fishes[key] = null;
+        this.setState({ fishes });
+    }
+
     updateFish = (key, fish) => {
-        console.log(fish);
         this.setState(prevState => {
             const fishes = { ...prevState.fishes, [key]: fish }
-            console.log(fishes);
             return { fishes };
         });
     };
@@ -58,6 +60,12 @@ class App extends Component {
         // 3. Call setState to update our state object
         this.setState({ order });
     };
+
+    deleteFromOrder = key => {
+        let order = { ...this.state.order};
+        order[key] = null;
+        this.setState({ order });
+    }
 
     /* addToOrder = (fish) => {
         this.setState(
@@ -91,11 +99,16 @@ class App extends Component {
                     }
                     </ul>
                 </div>
-                <Order fishes={this.state.fishes} order={this.state.order} />
+                <Order 
+                    fishes={this.state.fishes}
+                    order={this.state.order}
+                    deleteFromOrder={this.deleteFromOrder}
+                />
                 <Inventory
                     addFish={this.addFish}
                     loadSampleFishes={this.loadSampleFishes}
                     updateFish={this.updateFish}
+                    deleteFish={this.deleteFish}
                     fishes={this.state.fishes}
                  />
             </div>
