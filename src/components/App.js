@@ -61,9 +61,10 @@ class App extends Component {
         this.setState({ order });
     };
 
-    deleteFromOrder = key => {
+    removeFromOrder = key => {
         let order = { ...this.state.order};
-        order[key] = null;
+        // order[key] = null;
+        delete order[key] ;
         this.setState({ order });
     }
 
@@ -102,7 +103,7 @@ class App extends Component {
                 <Order 
                     fishes={this.state.fishes}
                     order={this.state.order}
-                    deleteFromOrder={this.deleteFromOrder}
+                    removeFromOrder={this.removeFromOrder}
                 />
                 <Inventory
                     addFish={this.addFish}
