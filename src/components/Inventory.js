@@ -18,6 +18,15 @@ class Inventory extends Component {
     uid: null,
     owner: null
   };
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.authHandler({ user });
+      }
+    });
+  }
+
   authHandler = async authData => {
     // lookup the current store in firebase
     const store = await base.fetch(this.props.storeId, { context: this });
@@ -41,11 +50,14 @@ class Inventory extends Component {
     firebaseApp
       .auth()
       .signInWithPopup(authProvider)
-      .then(this.authHandler);
+      .then(this.authHandler)
+      .catch(error => console.log(error));
   };
 
-  logout = () => {
+  logout = async () => {
     console.log("logging out");
+    await firebase.auth().signOut();
+    this.setState({ uid: null });
   };
 
   render() {

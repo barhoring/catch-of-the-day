@@ -11,7 +11,7 @@ class EditFishForm extends React.Component {
       status: PropTypes.string.isRequired
     }),
     index: PropTypes.string.isRequired,
-    updatedFish: PropTypes.func.isRequired,
+    updateFish: PropTypes.func.isRequired,
     deleteFish: PropTypes.func.isRequired
   };
 
