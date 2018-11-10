@@ -6,11 +6,11 @@ class Fish extends React.Component {
   static propTypes = {
     addToOrder: PropTypes.func,
     details: PropTypes.shape({
-      name: PropTypes.string,
-      image: PropTypes.string,
-      desc: PropTypes.string,
-      price: PropTypes.number,
-      status: PropTypes.string
+      name: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      desc: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      status: PropTypes.string.isRequired
     })
   };
   render() {
